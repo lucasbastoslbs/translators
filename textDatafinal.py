@@ -75,5 +75,3 @@ def remove_netiquette(textdata_folder):
             nf.close()
     except IOError:
         print('falha ao abrir arquivo)
-
-0100000041696E752070656F706C6500
