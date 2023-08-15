@@ -6,13 +6,15 @@ def hex_byte(string: str):
     e = ''.encode().hex() + string
     return bytearray.fromhex(e)
 
+textdata_folder = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\'
+texttrans_sheet = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\texttranslated.xlsx'
+prefixtrans_sheet = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\prefix.xlsx'
 
-
-def generate_trans_text():
+def generate_trans_text(textdata_folder,texttrans_sheet,prefixtrans_sheet):
     try:
-        with open('C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\textData.dat','rb') as f, open('C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\textData_3.dat','wb') as nf:
+        with open(textdata_folder+'textData.dat','rb') as f, open(textdata_folder+'textData_3.dat','wb') as nf:
             #-----------------------------------------------------------------------------------------------------------------------
-            df = pd.read_excel('C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\texttranslated.xlsx')
+            df = pd.read_excel(texttrans_sheet)
             x = df['entxt'].values.tolist()
             total_read = 0
             for txt in x:
@@ -42,7 +44,7 @@ def generate_trans_text():
             #prefixes
             f.read(145860)
             #-----------------------------------------------------------------------------------------------------------------------
-            df = pd.read_excel('C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\prefix.xlsx')
+            df = pd.read_excel(prefixtrans_sheet)
             ids = df['idx'].values.tolist()
             txts = df['new_txt'].values.tolist()
             for id,txt in zip(ids,txts):
@@ -60,5 +62,18 @@ def generate_trans_text():
             f.close()
             nf.close()
     except IOError:
-    print('erro ao abrir arquivo')
+        print('erro ao abrir arquivo')
 
+def remove_netiquette(textdata_folder):
+    try:
+        with open(textdata_folder+'textdata_3.dat','rb') as f, open(textdata_folder+'textdata_4.dat','wb') as nf:
+            nf.write(f.read(118291))
+            nf.write(bytearrayy.fromhex('010000000C00717171717171717171777100'))
+            f.read(3417)
+            nf.write(f.read())
+            f.close()
+            nf.close()
+    except IOError:
+        print('falha ao abrir arquivo)
+
+0100000041696E752070656F706C6500
