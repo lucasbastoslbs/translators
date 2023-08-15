@@ -6,10 +6,6 @@ def hex_byte(string: str):
     e = ''.encode().hex() + string
     return bytearray.fromhex(e)
 
-textdata_folder = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\'
-texttrans_sheet = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\texttranslated.xlsx'
-prefixtrans_sheet = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\prefix.xlsx'
-
 def generate_trans_text(textdata_folder,texttrans_sheet,prefixtrans_sheet):
     try:
         with open(textdata_folder+'textData.dat','rb') as f, open(textdata_folder+'textData_3.dat','wb') as nf:
@@ -67,11 +63,18 @@ def generate_trans_text(textdata_folder,texttrans_sheet,prefixtrans_sheet):
 def remove_netiquette(textdata_folder):
     try:
         with open(textdata_folder+'textdata_3.dat','rb') as f, open(textdata_folder+'textdata_4.dat','wb') as nf:
-            nf.write(f.read(118291))
-            nf.write(bytearrayy.fromhex('010000000C00717171717171717171777100'))
-            f.read(3417)
+            nf.write(f.read(118220))
+            nf.write(bytearray.fromhex('010000000C00717171717171717171777100'))
+            f.read(3418)
             nf.write(f.read())
             f.close()
             nf.close()
     except IOError:
-        print('falha ao abrir arquivo)
+        print('falha ao abrir arquivo')
+              
+textdata_folder = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\'
+texttrans_sheet = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\texttranslated.xlsx'
+prefixtrans_sheet = 'C:\\Users\\Lucas\\Documents\\VS Projects\\Redstone\\translators\\prefix.xlsx'
+
+generate_trans_text(textdata_folder,texttrans_sheet,prefixtrans_sheet)
+remove_netiquette(textdata_folder)
